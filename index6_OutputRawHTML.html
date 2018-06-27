@@ -13,22 +13,35 @@
 <body>
   <div class="container" style="margin-top: 50px;">
     <div class="row">
-      <div id="app">
-        <input type="text" v-on:input="changeTitle">
-        <p>{{ title }}</p>
+      <div id ="app">
+        <!-- v-once: All content in this element only render once. 
+              It wont be updated later on, it keeps the original value -->
+        <h1 v-once> {{ title }}</h1>
+        <p> {{ sayHello() }} - <a v-bind:href="link">Google</a> </p>
+        <hr>
+        <h3> Raw HTML code</h3>
+        <h4> A useful feature which prevents css attacks</h4>
+        <p> {{ finishedLink }}</p>
+        <hr>
+        <h3> To output a link </h3>
+        <h4> We use a directive ... v-html</h4>
+        <p v-html="finishedLink"></p>
       </div>
     </div>
   </div>
-  
+
   <script>
     new Vue({
       el: '#app',
       data: {
-        title: 'Hello World!'
+        title: 'Hello World!',
+        link: 'http://google.com',
+        finishedLink: '<a href="http://google.com">Google</a>'
       },
       methods: {
-        changeTitle: function(event){
-          this.title = event.target.value;
+        sayHello: function(){
+          this.title='Hello!';
+          return this.title;
         }
       }
     });
@@ -38,6 +51,6 @@
   <script src="static/js/jquery.min.js"></script>
   <script src="static/js/popper.min.js"></script>
   <script src="static/js/custom.js"></script>
-  
+
 </body>
 </html>
