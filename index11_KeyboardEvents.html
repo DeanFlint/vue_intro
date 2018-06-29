@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/main.css" />
+  <script src="static/js/vue.min.js"></script>
+</head>
+<body>
+  <div class="container" style="margin-top: 50px;">
+    <div class="row">
+      <div id ="app">
+        <button v-on:click="increase(2)">Click Me!</button>
+        <p> {{ counter }} </p>
+        <p v-on:mousemove="updateCoordinates"> 
+          Coordinates: {{ x }} / {{ y }} 
+          - <span v-on:mousemove="deadSpot">DEAD SPOT</span>
+        </p>
+        <input type="text" v-on:keyup.enter="alertMe">
+        <!--
+          The list of key modifier aliases:
+            .enter
+            .tab
+            .delete (captures both “Delete” and “Backspace” keys)
+            .esc
+            .space
+            .up
+            .down
+            .left
+            .right 
+        -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        counter: 0,
+        x: 0,
+        y: 0
+      },
+      methods: {
+        increase: function(step) {
+          this.counter+=step;
+        },
+        updateCoordinates: function(event){
+          this.x = event.clientX;
+          this.y = event.clientY;
+        },
+        deadSpot: function(event) {
+          event.stopPropagation();
+        },
+        alertMe: function(){
+          alert('Alert!');
+        }
+      }
+    });
+  </script>
+
+  <script src="static/js/bootstrap.min.js"></script>  
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/popper.min.js"></script>
+  <script src="static/js/custom.js"></script>
+
+</body>
+</html>
