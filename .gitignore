@@ -1,2 +1,8 @@
 /node_modules
-/static/css/main.css
+/static/css
+/static/fonts
+/static/js/bootstrap.min.js
+/static/js/jquery.min.js
+/static/js/popper.min.js
+/static/js/vue.min.js
+

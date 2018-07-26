@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/main.css" />
+  <script src="static/js/vue.min.js"></script>
+</head>
+<body>
+
+  <div class="container" style="margin-top: 50px;">
+      <div class="row">
+        <div id="exercise">
+          <h1 v-if="!message">You must send a message for help!</h1>
+          <h2 v-else>You have sent a message!</h2>
+          <textarea v-model="message"></textarea>
+          <button v-show="message">
+            Send word to allies for help!
+          </button>
+          <pre>
+            {{ $data }}
+          </pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#exercise',
+      data: {
+        message: 'Our King is dead! Send help!'
+      }
+    })
+  </script>
+
+  <script src="static/js/bootstrap.min.js"></script>  
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/popper.min.js"></script>
+  <script src="static/js/custom.js"></script>
+  
+</body>
+</html>
