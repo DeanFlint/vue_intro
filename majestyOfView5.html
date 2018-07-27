@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="static/css/main.css" />
+  <script src="static/js/vue.min.js"></script>
+</head>
+<body>
+
+  <!-- Calculator with a 'Calculate' button -->
+  <div class="container" style="margin-top: 50px;">
+      <div class="row">
+        <div id="exercise">
+          <h1> Type 2 numbers and choose operation.</h1>
+          <div class="form-row">
+            <div class="col-auto">  
+              <!-- Notice here the special modifier 'number' is 
+              passed in order to parse inputs as numbers -->
+              <input v-model.number="a" class="form-control">
+            </div>
+            <div class="col-auto"> 
+              <select v-model="operator" class="form-control">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+              </select>
+            </div>
+            <div class="col-auto"> 
+            <input v-model.number="b" class="form-control">
+              <button type="submit" @click="calculate"
+                class="btn btn-primary">
+                Calculate
+              </button>
+            </div>
+          </div>
+          <h2>
+            Result: {{a}} {{operator}} {{b}} = {{c}}
+          </h2>
+          <pre> {{ $data }} </pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#exercise',
+      data: {
+        a: 1,
+        b: 2,
+        c: null,
+        operator: "+",
+      },
+      methods: {
+        calculate: function(){
+          event.preventDefault();
+          switch (this.operator){
+            case "+":
+              this.c = this.a + this.b
+              break;
+            case "-":
+              this.c = this.a - this.b
+              break;
+            case "*":
+              this.c = this.a * this.b
+              break;
+            case "/":
+              this.c = this.a / this.b
+              break;
+          }
+        }
+      }
+    })
+  </script>
+
+  <script src="static/js/bootstrap.min.js"></script>  
+  <script src="static/js/jquery.min.js"></script>
+  <script src="static/js/popper.min.js"></script>
+  <script src="static/js/custom.js"></script>
+  
+</body>
+</html>
